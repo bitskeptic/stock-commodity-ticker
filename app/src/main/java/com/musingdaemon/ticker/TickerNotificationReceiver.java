@@ -15,10 +15,12 @@ public class TickerNotificationReceiver extends BroadcastReceiver {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
 
-        Intent serviceIntent = new Intent(context, TickerNotificationService.class);
-        serviceIntent.putExtra("hour", serviceIntent.getIntExtra("hours", 16));
-        serviceIntent.putExtra("minute", serviceIntent.getIntExtra("minutes", 0));
+        Intent schedulingServiceIntent = new Intent(context, TickerSchedulingService.class);
+        schedulingServiceIntent.putExtra("hour", schedulingServiceIntent.getIntExtra("hours", 16));
+        schedulingServiceIntent.putExtra("minute", schedulingServiceIntent.getIntExtra("minutes", 0));
+        context.startService(schedulingServiceIntent);
 
-        context.startService(serviceIntent);
+        Intent notificationServiceIntent = new Intent(context, TickerNotificationService.class);
+        context.startService(notificationServiceIntent);
     }
 }
