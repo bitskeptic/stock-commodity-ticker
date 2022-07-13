@@ -45,7 +45,7 @@ public class TickerSchedulingService extends Service {
             nextDateTime = nextDateTime.plus(1, ChronoUnit.DAYS);
         }
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, nextDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(), alarmIntent);
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, nextDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli(), alarmIntent);
 
         return super.onStartCommand(intent, flags, startId);
     }
